@@ -5,7 +5,7 @@ import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
-import Card from './Card';
+
 
 import { api } from '../utils/api.js';
 

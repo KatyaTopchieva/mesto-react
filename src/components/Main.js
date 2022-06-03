@@ -1,9 +1,5 @@
 import React from "react";
-import Kustou from '../images/Kustou.png';
-import api from "../utils/api";
 import Card from "./Card";
-
-//import '../blocks/main.css';
 
 class Main extends React.Component {
   constructor(props) {
