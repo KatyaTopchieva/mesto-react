@@ -1,8 +1,8 @@
 .elements__like-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    height: 32px;
+    height: 38px;
     margin-right: 20px;
 }
