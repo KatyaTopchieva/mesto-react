@@ -102,7 +102,9 @@ render() {
    />
    <PopupWithForm
      name="avatar"
-     title="Обновить аватар"     
+     title="Обновить аватар"
+     buttonText="Сохранить"
+     buttonSecondText="Сохранение..."  
      isOpen={this.state.isEditAvatarPopupOpen}
      onClose={this.closeAllPopups}
      >
@@ -111,14 +113,12 @@ render() {
             id="link-avatar-input" name="linkAvatar" placeholder ="Ссылка на аватар" required />
           <span className="popup__error link-avatar-input-error"></span>
         </div>
-        <div className="popup__button-container">
-          <button className="popup__button" type="submit">Сохранить</button>
-          <button className="popup__button popup__button_condition_saving" type="submit">Сохранение...</button>
-        </div>
      </PopupWithForm>
      <PopupWithForm
       name="profile"
       title="Редактировать профиль"
+      buttonText="Сохранить"
+      buttonSecondText="Сохранение..."  
       isOpen={this.state.isEditProfilePopupOpen}
       onClose={this.closeAllPopups}>
           <div className="popup__input-container">
@@ -131,14 +131,12 @@ render() {
               required minLength="2" maxLength="200" />
             <span className="popup__error about-me-input-error"></span>
         </div>
-        <div className="popup__button-container">
-          <button className="popup__button" type="submit">Сохранить</button>
-          <button className="popup__button popup__button_condition_saving" type="submit">Сохранение...</button>
-        </div>
     </PopupWithForm>
     <PopupWithForm
       name="card"
       title="Новое место"
+      buttonText="Сохранить"
+      buttonSecondText="Сохранение..."  
       isOpen={this.state.isAddPlacePopupOpen}
       onClose={this.closeAllPopups}>    
         <div className="popup__input-container">
@@ -150,19 +148,14 @@ render() {
             id="link-input" name="link" placeholder ="Ссылка на картинку" required />
           <span className="popup__error link-input-error"></span>
         </div>
-        <div className="popup__button-container">
-        <button className="popup__button" type="submit">Сохранить</button>
-        <button className="popup__button popup__button_condition_saving" type="submit">Сохранение...</button>
-        </div>
     </PopupWithForm>
     <PopupWithForm
      name="delete"
      title="Вы уверены?"
+     buttonText="Да"
+     buttonSecondText=" "  
      isOpen={false}
      onClose={this.closeAllPopups}>
-      <div className="popup__button-container">
-        <button className="popup__button" type="submit">Да</button>
-      </div>
     </PopupWithForm>
     <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}/>
     <Footer />         

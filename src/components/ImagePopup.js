@@ -11,8 +11,8 @@ class ImagePopup extends React.Component {
                 <div className="popup__container popup__container_image">
                 <button className="popup__close-button button-close-image" type="button" onClick={this.props.onClose}></button>
                 <figure className="popup__figure">
-                    <img className="popup__image-card" src={this.props.card }/>
-                    <figcaption className="popup__caption"></figcaption>
+                    <img className="popup__image-card" src={this.props.card } alt={this.props.name} />
+                    <figcaption className="popup__caption">{this.props.name}</figcaption>
                 </figure>
                 </div>
             </div>
