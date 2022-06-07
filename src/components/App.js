@@ -7,8 +7,6 @@ import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 
 
-import { api } from '../utils/api.js';
-
 class App extends React.Component{
 
   constructor(props){
@@ -18,12 +16,6 @@ class App extends React.Component{
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
       isEditAvatarPopupOpen: false,
-      userName: '', 
-      userDescription: '',
-      userAvatar: '',
-      cards: [],
-      userId: '',
-      selectedCard: null 
     }
   }
 
@@ -49,41 +41,6 @@ closeAllPopups = () => {
   this.setState({isAddPlacePopupOpen: false});
   this.setState({selectedCard: null});
 }
-
-componentDidMount() {
-  Promise.all([
-    api.getProfile(),
-    api.getCard()
-  ])
-  .then((values) => {
-        const res = values[0];
-        this.setUserInfo(res.name, res.about, res.avatar);
-        const userId = res._id;
-  
-        const cards = values[1];
-        this.setCards(userId, cards);
-      })
-  
-  .catch((err)=>{
-    console.log(err);
-  })
-}
-
-setCards(userId, cards) {
-  this.setState({
-    userId: userId,
-    cards: cards
-  })
-}
-
-setUserInfo(userName, userDescription, userAvatar) {
-  this.setState({
-    userName: userName, 
-    userDescription: userDescription,
-    userAvatar: userAvatar
-  })
-}
- 
 
 render() {
   return (
@@ -157,7 +114,9 @@ render() {
      isOpen={false}
      onClose={this.closeAllPopups}>
     </PopupWithForm>
-    <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}/>
+    <ImagePopup
+    card={this.state.selectedCard} 
+    onClose={this.closeAllPopups}/>
     <Footer />         
     </div>
   );

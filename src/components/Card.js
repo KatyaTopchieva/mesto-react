@@ -6,7 +6,7 @@ class Card extends React.Component {
     }
 
     showImage = ()=>{
-        this.props.handleCardClick(this.props.link);
+        this.props.handleCardClick({link: this.props.link, name: this.props.name});
     }
 
     render() {
@@ -18,7 +18,7 @@ class Card extends React.Component {
                     <h2 className="elements__name">{this.props.name}</h2>
                     <div className="elements__like-container">
                     <button className="elements__button-like" type="button"></button>
-                    <span className="elements__like-count"></span>
+                    <span className="elements__like-count">{this.props.likes.length}</span>
                     </div>
                 </div>
             </div>       
