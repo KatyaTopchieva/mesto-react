@@ -8,7 +8,7 @@ class Api {
       return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`)
   }
   
-    getProfile() {
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
