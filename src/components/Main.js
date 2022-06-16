@@ -69,8 +69,7 @@ class Main extends React.Component {
   componentDidMount() {
     this.cardsRefresh();
   }
-  
-  
+    
   render(){
     return(
             <div className="content">

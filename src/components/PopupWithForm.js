@@ -16,7 +16,9 @@ class PopupWithForm extends React.Component {
             <fieldset className="popup__fieldset">
               {this.props.children}
               <div className="popup__button-container">
-                <button className="popup__button" type="submit">{this.props.buttonText}</button>
+                <button className="popup__button" type="submit" onClick={this.props.submit}>
+                  {this.props.buttonText}
+                </button>
                 <button className="popup__button popup__button_condition_saving"
                  type="submit">{this.props.buttonSecondText}</button>
               </div>

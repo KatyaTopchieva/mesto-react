@@ -8,6 +8,7 @@ import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Card from "./Card";
 import { api } from '../utils/api.js';
+import EditProfilePopup from './EditProfilePopup' 
 
 class App extends React.Component{
   
@@ -22,9 +23,9 @@ class App extends React.Component{
     }
   }
 
-handleUserInfo = (currentUser) => {
-  this.setState( {currentUser: currentUser} );
-}
+  handleUpdateUser = (currentUser) => {
+    this.setState( {currentUser: currentUser} );
+  }
 
   handleEditAvatarClick = () => {
   this.setState({isEditAvatarPopupOpen: true});
@@ -61,7 +62,7 @@ componentDidMount() {
         //this.setUserInfo(res.name, res.about, res.avatar);
         const userId = res._id;
         //res.cards =  values[1];
-        this.handleUserInfo(res);
+        this.handleUpdateUser(res);
         //const cards = values[1];
         //this.setCards(userId, cards);
       })
@@ -101,24 +102,10 @@ render() {
               <span className="popup__error link-avatar-input-error"></span>
             </div>
         </PopupWithForm>
-        <PopupWithForm
-          name="profile"
-          title="Редактировать профиль"
-          buttonText="Сохранить"
-          buttonSecondText="Сохранение..."  
-          isOpen={this.state.isEditProfilePopupOpen}
-          onClose={this.closeAllPopups}>
-              <div className="popup__input-container">
-                <input type="text" className="popup__input popup__input_el_name"
-                  id="username-input"
-                  name="name" placeholder="Имя" required minLength="2" maxLength="40" />
-                <span className="popup__error username-input-error"></span>
-                <input type="text" className="popup__input popup__input_el_about-me"
-                  id="about-me-input" name="aboutme" placeholder ="О себе"
-                  required minLength="2" maxLength="200" />
-                <span className="popup__error about-me-input-error"></span>
-            </div>
-        </PopupWithForm>
+        <EditProfilePopup 
+          isOpen={this.state.isEditProfilePopupOpen} 
+          onClose={this.closeAllPopups}
+          onUpdateUser={this.handleUpdateUser} />
         <PopupWithForm
           name="card"
           title="Новое место"
