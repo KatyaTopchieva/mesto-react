@@ -36,24 +36,21 @@ function AddPlacePopup(props) {
           submit={submit}
           >  
             <div className="popup__input-container">
-              <input 
-               value={name||' '}
+              <input
+               value={name||''}
                onChange={handleInputName}
                type="text" 
                className="popup__input popup__input_card-name"
-               id="card-name-input"
-               name="card-name" 
-               placeholder="Название"
-               required minLength="2"
-               maxLength="30" />
+               id="card-name-input" 
+               name="card-name" placeholder = "Название" required/>
               <span className="popup__error card-name-input-error"></span>
               <input
                value={link||' '}
                onChange={handleInputLink}
-              type="url"
-              className="popup__input popup__input_card-image"
-              id="link-input" name="link"
-              placeholder ="Ссылка на картинку" required />
+               type="url"
+               className="popup__input popup__input_card-image"
+               id="link-input" name="link"
+               placeholder ="Ссылка на картинку" required/>
               <span className="popup__error link-input-error"></span>
             </div>
         </PopupWithForm>
