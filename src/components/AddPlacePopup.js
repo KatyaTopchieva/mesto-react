@@ -23,6 +23,9 @@ function AddPlacePopup(props) {
               props.onAddCard(value);
               props.onClose();
         })
+        .catch((err)=>{
+            console.log(err);
+        })
     }
 
     return (

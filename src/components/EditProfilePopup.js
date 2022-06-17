@@ -10,7 +10,7 @@ function EditProfilePopup(props) {
     React.useEffect(() => {
         setName(currentUser?.name);
         setDescription(currentUser?.about);
-      }, [currentUser]); 
+      }, [currentUser, props.isOpen]); 
 
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
@@ -22,17 +22,13 @@ function EditProfilePopup(props) {
   let handleInputDescription = (e) => {
       setDescription(e.target.value)
   }
-
+ 
   let submit = (event) =>{
       event.preventDefault();
-      api.editProfile(name, description)
-         .then(value => {
-            setName(' ');
-            setDescription(' ');
-            props.onUpdateUser(value);
-            props.onClose();
-            
-      })
+      props.onUpdateUser(name, description)
+      setName(' ');
+      setDescription(' ');
+      props.onClose();
   }
 
   return (

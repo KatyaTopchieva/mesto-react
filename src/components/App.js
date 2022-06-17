@@ -51,12 +51,29 @@ class App extends React.Component{
     }
   }
 
-  handleUpdateUser = (currentUser) => {
-    this.setState( {currentUser: currentUser} );
+  handleUpdateUser = (name, about) => {
+    api.editProfile(name, about)
+    .then(value => {
+      this.setState( {currentUser: value} );
+        })
+    .catch((err)=>{
+        console.log(err);
+    })
   }
 
-  handleUpdateAvatar = (currentUser) => {
-    this.setState( {currentUser: currentUser} );
+  handleRefreshUser = (value) => {
+      this.setState( {currentUser: value} );
+  }
+
+  handleUpdateAvatar = (avatar) => {
+
+    api.editAvatar(avatar)
+    .then(value => {
+      this.setState( {currentUser: value} );
+        })
+    .catch((err)=>{
+        console.log(err);
+    })
   }
   
   handleEditAvatarClick = () => {
@@ -90,8 +107,7 @@ componentDidMount() {
   .then((values) => {
         const res = values[0];
         const userId = res._id;
-        this.handleUpdateUser(res);        
-        this.handleUpdateAvatar(res);
+        this.handleRefreshUser(res); 
         const cards = values[1];
         this.setCards(cards);
       })
@@ -126,7 +142,8 @@ render() {
         <EditAvatarPopup 
           isOpen={this.state.isEditAvatarPopupOpen}
           onClose={this.closeAllPopups}
-          onUpdateAvatar={this.handleUpdateAvatar} /> 
+          onUpdateAvatar={this.handleUpdateAvatar}
+           /> 
         <EditProfilePopup 
           isOpen={this.state.isEditProfilePopupOpen} 
           onClose={this.closeAllPopups}
@@ -137,16 +154,16 @@ render() {
           onAddCard={this.handlerAddCard}
           />
         <PopupWithForm
-        name="delete"
-        title="Вы уверены?"
-        buttonText="Да"
-        buttonSecondText=" "  
-        isOpen={false}
-        onClose={this.closeAllPopups}>
+          name="delete"
+          title="Вы уверены?"
+          buttonText="Да"
+          buttonSecondText=" "  
+          isOpen={false}
+          onClose={this.closeAllPopups}>
         </PopupWithForm>
         <ImagePopup
-        card={this.state.selectedCard} 
-        onClose={this.closeAllPopups}/>
+          card={this.state.selectedCard} 
+          onClose={this.closeAllPopups}/>
         <Footer />         
         </div>    
     </CurrentUserContext.Provider>

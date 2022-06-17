@@ -6,26 +6,19 @@ import { api } from '../utils/api.js';
 function EditAvatarPopup(props) {
     const currentUser = React.useContext(CurrentUserContext);
 
-    React.useEffect(() => {
-        setAvatar(currentUser?.avatar);
-      }, [currentUser]);
-
-      const [avatar, setAvatar] = React.useState('');
+    const [avatar, setAvatar] = React.useState('');
 
       let handleInputAvatar = (e) => {
         setAvatar(e.target.value)
     }
 
-    const avatarRef = React.useRef();
+    //const avatarRef = React.useRef();
     
     let submit = (event) =>{
         event.preventDefault();
-        api.editAvatar(avatar)
-           .then(value => {
-              setAvatar(' ');
-              props.onUpdateAvatar(value);
-              props.onClose();
-        })
+        props.onUpdateAvatar(avatar);
+        setAvatar(' ');
+        props.onClose();
     }
        
 return (
