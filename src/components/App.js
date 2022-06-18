@@ -37,16 +37,25 @@ class App extends React.Component{
       const cards = this.state.cards.filter(x => x._id !== id);
       this.setCards(cards);
     })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
   handleCardLike = (id, isLiked) => {
 
     const card = this.state.cards.find(x => x._id === id);
     if(isLiked){
-        api.deleteLike(id); 
+        api.deleteLike(id)
+          .catch((err)=>{
+            console.log(err);
+          })
     }else
     {
-        api.addLike(id);    
+        api.addLike(id)
+          .catch((err)=>{
+            console.log(err);
+          })  
         card.likes.push(this.context);        
     }
   }
@@ -76,6 +85,8 @@ class App extends React.Component{
     })
   }
   
+
+
   handleEditAvatarClick = () => {
   this.setState({isEditAvatarPopupOpen: true});
 }
@@ -117,8 +128,12 @@ componentDidMount() {
   })
 }
 
-handlerAddCard = (newCard) =>{
-  this.setCards([newCard, ...this.state.cards]); 
+handlerAddCard = (name, link) =>{
+
+  api.addCard(name, link)
+    .then((newCard) => {
+        this.setCards([newCard, ...this.state.cards]); 
+    });  
 }
 
 render() {

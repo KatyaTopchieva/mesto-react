@@ -11,8 +11,6 @@ function EditAvatarPopup(props) {
       let handleInputAvatar = (e) => {
         setAvatar(e.target.value)
     }
-
-    //const avatarRef = React.useRef();
     
     let submit = (event) =>{
         event.preventDefault();

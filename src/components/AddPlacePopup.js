@@ -1,6 +1,5 @@
 import React from "react";
 import PopupWithForm from './PopupWithForm';
-import { api } from "../utils/api";
 
 function AddPlacePopup(props) {
     const [name, setName] = React.useState('');
@@ -16,16 +15,10 @@ function AddPlacePopup(props) {
 
     let submit = (event) =>{
         event.preventDefault();
-        api.addCard(name, link)
-           .then(value => {
-              setName(' ');
-              setLink(' ');
-              props.onAddCard(value);
-              props.onClose();
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        props.onAddCard(name, link);
+        setName(' ');
+        setLink(' ');
+        props.onClose();
     }
 
     return (
